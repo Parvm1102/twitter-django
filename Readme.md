@@ -1,9 +1,9 @@
 # Twitter Django Project
-
+A Django-based web application that replicates core Twitter functionality, allowing users to create accounts, post tweets, and search for content. Built with Python and Django framework for a complete social media experience.
 ## Setup Instructions
 
 ### Prerequisites
-- Python 3.8+
+- Python 3.10+
 - pip
 - virtualenv (recommended)
 
@@ -11,7 +11,7 @@
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/Parvm1102/twitter-django.git
 cd twitter_django
 ```
 
@@ -55,13 +55,5 @@ The application will be available at `http://127.0.0.1:8000/`
 ## Features
 
 - User authentication
-- Tweet functionality
-- User profiles
-- Timeline views
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+- Tweet functionality view,create,update and delete
+- Search tweet by keyword

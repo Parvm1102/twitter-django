@@ -1,15 +1,32 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1 class = 'text-center mt-3'>Tweet List</h1>
-
-<a class = 'btn btn-primary rounded-4 mb-3 fs-6 ' href="{% url 'tweet_create' %}"> 
-    <i class="bi bi-plus fs-3 align-middle"></i> 
-    {% if user.is_authenticated %}Create New Tweet
+{% if query %}
+    <h2 class="text-center mt-3">Search Results for "{{ query }}"</h2>
+    {% if tweets|length == 0 %}
+        <div class="alert alert-info text-center" role="alert">
+            {% if query %}
+                No tweets found for "{{ query }}".
+            {% else %}
+                No tweets available.
+            {% endif %}
+        </div>
     {% else %}
-    Please Login to Create a Tweet
+        <h3 class="text-center mt-3">Total Tweets: {{ tweets|length }}</h3>
+    {% endif %}
+    {% else %}
+        <h1 class = 'text-center mt-3'>Tweet List</h1>
+        <a class = 'btn btn-primary rounded-4 mb-3 fs-6 ' href="{% url 'tweet_create' %}"> 
+        <i class="bi bi-plus fs-3 align-middle"></i> 
+        {% if user.is_authenticated %}Create New Tweet
+        {% else %}
+        Please Login to Create a Tweet
     {% endif %}
 </a>
+{% endif %}
+
+
+
 
 <div class="container row gap-3">
     {% for tweet in tweets %}
@@ -26,4 +43,38 @@
         </div>
     {% endfor %}
 </div>
+
+<footer class="mt-5">
+  <hr class="mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>About Us</h5>
+        <p>A social media platform for sharing thoughts and ideas made in Django.</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url "tweet_list" %}" class="text-decoration-none text-white">Home</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Services</a></li>
+          <li><a href="#" class="text-decoration-none text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Follow Us</h5>
+        <ul class="list-inline social-icons">
+          <li class="list-inline-item"><a href="https://github.com/Parvm1102" target = '_blank' class="text-white"><i class="bi bi-github"></i></a></li>
+          <li class="list-inline-item"><a href="https://www.linkedin.com/in/parv-mittal-16b532289/" class="text-white" target = '_blank'><i class="bi bi-linkedin"></i></a></li>
+          <li class="list-inline-item"><a href="https://x.com/parv_mittal07" class="text-white" target = '_blank'><i class="bi bi-twitter-x"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>&copy; 2025 Parv Mittal. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
 {% endblock %}
